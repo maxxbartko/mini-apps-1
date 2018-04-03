@@ -1,36 +1,18 @@
-// TIC TAC TOE the first move always starts with player X restart alternator on
-// new game the app detects a win or tie and displays an appropriate message if
-// win, etc. a button resets the game for a new round of gameplay button that
-// resets DOM event listener document.addEventListener('click', function () {
-// document.getElementsByTagName('td')         .text = 'X'; });
-let button = document.getElementsByTagName('button');
-button.addEventListener('click', buttonHandler);
-
 let mark = 'X';
 let moves = 0;
 
-let wonLastX = false;
 let victoryX = false;
 let victoryO = false;
 
 let board = [];
 
-let space,
-  x,
-  y,
-  winsX,
-  winsO,
-  ties;
+let space, x, y;
 
 const newGame = () => {
-  wonLastX ? mark = 'O' : mark = 'X';
+  mark = 'X';
   moves = 0;
   board = [];
 
-  renderBoard();
-}
-
-const renderBoard = () => {
   for (var x = 0; x < 3; x++) {
     // make model row arrays
     board.push([]);
@@ -44,35 +26,32 @@ const renderBoard = () => {
       space.addEventListener('click', moveHandler);
 
       // create text nodes
+      space.innerHTML = '';
       let text = document.createTextNode('');
       space.appendChild(text);
     }
   }
 };
 
-const buttonHandler = (e) => {
-  
-}
+let button = document.getElementById('button');
+button.addEventListener('click', newGame);
 
 const moveHandler = (e) => {
   space = e.currentTarget;
   [x, y] = space.id.split(',');
 
   if (board[x][y].includes(null)) {
-    alert('Space already occupied');
+    alert('SPACE OCCUPIED');
   } else {
     moveModel(x, y);
     moveView(space);
   }
-
-  moves++;
-  if (moves > 4) { checkWin(); }
 };
 
 const moveModel = (x, y) => {
-board[x][y] = mark === 'X'
-  ? [true, null]
-  : [null, true];
+  board[x][y] = mark === 'X' ? [true, null] : [null, true];
+  moves++;
+  if (moves > 4) { checkWin(); }
 }
 
 const moveView = (space) => {
@@ -125,10 +104,8 @@ const checkWin = () => {
     setTimeout(() => alert('O WINS'), 10);
   } else {
     if (moves === 9) {
-      // alert tie, since other outcomes come before this play again dialog y/n
-      !breakout;
+      setTimeout(() => alert('TIE'), 10);
     }
-    console.log('no one yet');
   }
 }
 // if 3 is odd, check midpoint for ez diag check vertical check build major
