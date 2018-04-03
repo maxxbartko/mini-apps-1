@@ -2,15 +2,15 @@
 // new game the app detects a win or tie and displays an appropriate message if
 // win, etc. a button resets the game for a new round of gameplay button that
 // resets DOM event listener document.addEventListener('click', function () {
-//  document.getElementsByTagName('td')         .text = 'X'; });
+// document.getElementsByTagName('td')         .text = 'X'; });
 
 let mark = 'X';
 let moves = 0;
 let dim = 3; // make alterable
 
 let wonLastX = false;
-let breakout = false; // consider making breakoutX and breakoutO variants
-
+let victoryX = false;
+let victoryO = false;
 
 let board = [];
 let movesX = [];
@@ -101,7 +101,7 @@ const moveView = (space) => {
 const checkWin = () => {
   // make sub-helper out of win check
 
-  if (checkPlayer('X'))
+  if (checkPlayer('X')) 
     !breakout;
   else if (checkPlayer('O')) {
     !breakout;
@@ -122,12 +122,12 @@ const checkWin = () => {
 // if x wins, tick up x win count and set xWonLast to true if o wins, tick up o
 // win count and set xWonLast to false
 
-
 newGame();
 // get whiteboard look at hints, adv content, etc to think through structure
 
 const checkPlayer = (player) => {
-  // set player-relevant variables: which list of moves, and which datum in each board square
+  // set player-relevant variables: which list of moves, and which datum in each
+  // board square
   let moves, z;
 
   if (player === 'X') {
@@ -138,58 +138,26 @@ const checkPlayer = (player) => {
     z = 1;
   }
 
-  // horizontal check variables
   let xCount = 0;
-  let xChecked = [];
-
-  // vertical check varibles
   let yCount = 0;
-  let ychecked = [];
 
-  // breakout variable in case of victory
-  let out = false;
-
-  // check columns and rows that player already moved into
-  for (let move = 0; 0 < moves.length && !breakout; move++) {
-    let [x, y] = moves[move];
-
-    // if x was already checked, skip it
-    if (!xChecked.includes(x)) {
-      // if not, search row
-      for (var j = 0; j < dim && !breakout; j++) {
-        // if X played in this row in this column, tick count up
-        if (board[x][j][z]) {
-          xCount++
-        }
-        // victory check
-        if (xCount === dim) {
-          !out;
-          alert(`${player} wins!`);
-          return true;
-        };
-        // push this x to checked rows
-        xChecked.push(x);
-      }
-    }
-
-    // if y was already checked, skip it
-    if (!yChecked.includes(y)) {
-      // if not, search row
-      for (var i = 0; i < dim && !breakout; i++) {
-        // if X played in this row in this column, tick count up
-        if (board[i][y][z]) {
-          yCount++
-        }
+  // check columns and rows that player already moved into search rows
+  for (var x = 0; x < dim && !breakout; x++) {
+    for (var y = 0; y < dim && !breakout; y++) {
+      // if X played in this row in this column, tick count up
+      if (board[x][y][z]) {
+        xCount++;
+        yCount++;
       }
       // victory check
-      if (yCount === dim) {
-        !out;
+      if (xCount === dim || yCount === dim) {
+        !breakout;
         alert(`${player} wins!`);
         return true;
-      }
-      yChecked.push(y);
+      };
     }
   }
+
   return false; // no win this round
 }
 
