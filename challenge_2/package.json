@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "description": "mini-app spint challenge 2",
   "scripts": {
-    "start": "nodemon my_file.js"
+    "start": "nodemon server.js"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
     "nodemon": "~1.3.8"
   },
   "dependencies": {
