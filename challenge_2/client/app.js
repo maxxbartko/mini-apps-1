@@ -1,10 +1,17 @@
-const $ = require('jquery');
-let json;
-
 window.onload = () => {
-  document.querySelector('#form').addEventListener('submit', function (e) {
+  $('form').on('submit', function(e) {
     e.preventDefault();
-    json = document.getElementById('json').value;
-    console.log(json);
+    let $json = $('#json').val();
+    $.ajax({
+      url: 'index.html',
+      type: 'POST',
+      dataType: 'json',
+      data: $json,
+      contentType: 'application/json',
+      success: (data) => $('#form').append(data),
+      error: (data) => $('#form').append(`File Not Found: ${data}`)
   });
-}
+});
+// const appendToDOM = (csv) => {
+//   $('form').append(csv);
+// }
