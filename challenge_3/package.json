@@ -1,0 +1,15 @@
+{
+  "name": "connect_four",
+  "version": "1.0.0",
+  "description": "Hack Reactor mini-sprint 3",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon server.js"
+  },
+  "author": "Maxx Bartko",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
