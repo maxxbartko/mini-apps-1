@@ -1,4 +1,7 @@
-let port = (serv = [0, 1]) => {
-  let [x, y] = serv;
-  return `${x} is better than ${y}`;
-}
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+  <h1>ey earth how u doin!</h1>,
+  document.getElementById('app')
+);
