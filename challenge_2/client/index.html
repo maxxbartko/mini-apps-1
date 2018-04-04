@@ -3,14 +3,13 @@
   <title>JSON to CSV Magic</title>
   <body>
     <h1 align="center">✨ JSON to CSV Magic ✨</h1>
-    <form method="post" id="json">
+    <form id="form">
       <div align="center">
-      <textarea>JSON Data Goes Here</textarea> <br>
-        <button type="submit" form="json">Submit JSON</button>
+      <textarea id="json">JSON Data Goes Here</textarea> <br>
+        <button type="submit" form="form">Submit JSON</button>
       </div>
     </form>
-    <script src="../samples/sales_report.json"/>
-    <script src="app.js"/>
-    <script src="../server.js"/>
+    <script src="jquery.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
