@@ -1,18 +1,19 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
-
+// import PropTypes from 'prop-types';
 
 class App extends React.Component {
-//   initialize()
-  render() { return <Board/> }
-
+  // initialize()
+  render() { return <Board /> }
 }
 
 const Board = props => {
   const boardModel = [5, 4, 3, 2, 1, 0];
   return (
-    <table>
-      { boardModel.map(row => (<tr row={row} key={`row${row}`}></tr>)) }
+    <table align="center">
+      <tbody>
+        { boardModel.map(row => (<Row row={row} key={`row${row}`} />)) }
+      </tbody>
     </table>
   )
 }
@@ -20,25 +21,24 @@ const Board = props => {
 const Row = props => {
   const rowModel = [0, 1, 2, 3, 4, 5, 6];
   return (
-    rowModel.map(col => (<td key={`${this.props.row},${col}`} class="space"></td>))
+    <tr>
+      { rowModel.map(col => (<td key={col} className="space"></td>)) }
+      {/* erased props reference */}
+    </tr>
   )
 }
 
-Row.propTypes = {
-  row: React.PropTypes.number.isRequired
-}
+// Row.propTypes = {
+//   row: PropTypes.number
+// }
 
-{/* const Piece = props => {
+/* const Piece = props => {}
 
-}
+const UI = props => {} */
 
-const UI = props => {
-
-} */}
-
-const ConnectFour = new App();
+// const ConnectFour = new App();
 
 ReactDOM.render(
-  <ConnectFour/>,
+  <App />,
   document.getElementById('app')
 )

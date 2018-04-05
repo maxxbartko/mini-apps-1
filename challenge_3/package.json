@@ -4,13 +4,14 @@
   "description": "Hack Reactor mini-sprint 3",
   "main": "server.js",
   "scripts": {
-    "test": "babel client -d public --watch",
+    "test": "babel client --out-dir public --watch --presets=env,react --source-maps inline",
     "start": "nodemon --exec babel-node server.js"
   },
   "author": "Maxx Bartko",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
+    "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1"
   },
@@ -21,11 +22,5 @@
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.7.0",
     "nodemon": "^1.17.3"
-  },
-  "babel": {
-    "presets": [
-      "env",
-      "react"
-    ]
   }
 }
