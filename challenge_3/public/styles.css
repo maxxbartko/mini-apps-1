@@ -1,7 +1,27 @@
+body {
+  background-color: peachpuff
+}
+
 .space {
   height: 50px;
   width: 50px;
   background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.red {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.black {
+  height: 50px;
+  width: 50px;
+  background-color: black;
   border-radius: 50%;
   display: inline-block;
 }

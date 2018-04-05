@@ -3,27 +3,51 @@
 // import PropTypes from 'prop-types';
 
 class App extends React.Component {
-  // initialize()
-  render() { return <Board /> }
+  constructor(props) {
+    super(props)
+    this.state = {
+      boardModel: [
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null],
+        [null,null,null,null,null,null,null]
+      ],
+      isRedsTurn: true
+    }
+  }
+
+  takeTurn(e) {
+    // let [x, y] = e.currentTarget.split(','),
+    console.log(e.currentTarget),
+    e.currentTarget.className = this.state.isRedsTurn ? 'red' : 'black',
+    // this.setState(boardModel[e.currentTarget.id] = this.state.isRedsTurn ? true : false)
+    this.setState({ isRedsTurn: !this.state.isRedsTurn })
+  }
+
+  changeColor(e) {
+    
+  }
+
+  render() { 
+    return (<Board takeTurn={this.takeTurn.bind(this)}/>) }
 }
 
 const Board = props => {
-  const boardModel = [5, 4, 3, 2, 1, 0];
   return (
-    <table align="center">
+    < table align = "center">
       <tbody>
-        { boardModel.map(row => (<Row row={row} key={`row${row}`} />)) }
+        { [5, 4, 3, 2, 1, 0].map(row => (<Row row={row} key={`row${row}`} takeTurn={props.takeTurn} />)) }
       </tbody>
     </table>
   )
 }
 
 const Row = props => {
-  const rowModel = [0, 1, 2, 3, 4, 5, 6];
   return (
     <tr>
-      { rowModel.map(col => (<td key={col} className="space"></td>)) }
-      {/* erased props reference */}
+      { [0, 1, 2, 3, 4, 5, 6].map(col => (<td id={`${props.row},${col}`} key={`${props.row},${col}`} className="space" onClick={props.takeTurn}></td>)) }
     </tr>
   )
 }
@@ -32,9 +56,15 @@ const Row = props => {
 //   row: PropTypes.number
 // }
 
-/* const Piece = props => {}
+const Piece = props => {
+  return (
+    <div>
+      {}
+    </div>
+  )
+}
 
-const UI = props => {} */
+// const UI = props => {}
 
 // const ConnectFour = new App();
 
